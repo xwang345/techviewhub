@@ -288,7 +288,7 @@ app.post("/register", (req, res) => {
     dataServiceAuth.registerUser(req.body).then(() => {
         res.render("register", {successMessage: "User created"});
     }).catch((err) => {
-        res.render("register", {errorMessage: err, user: req.body.user});
+        res.render("register", {errorMessage: err, user:req.body.user});
     });
 });
 
@@ -302,8 +302,15 @@ app.post("/login", (req, res) => {
         console.log(chalk.bgGreen(JSON.stringify(req.session)));
         res.redirect("/employees");
     }).catch((err) => {
-        // res.send(22222222222222222);
-        res.render("login", {errorMessage: err, user: req.body.user});
+        let erroruser =req.body.user;
+        // console.log("++++++++++"+chalk.bgCyan(JSON.stringify(erroruser)));
+        console.log("++++++++++"+chalk.bgCyan(erroruser));
+        var myErroruser = [erroruser];
+        myErroruser.splice(0,0,"<strong>");
+        myErroruser.splice(2,0,"</strong>");
+        console.log("++++++++++"+chalk.bgMagenta(myErroruser));
+        console.log(err)
+        res.render("login", {errorMessage: err, user: myErroruser});
     });
 });
 

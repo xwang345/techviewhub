@@ -78,7 +78,7 @@ module.exports.checkUser = (userData) =>{
         if (user == null) {
             reject('Unable to find user: ' + userData.user);
         } else if (user[0].password != userData.password) {
-            reject('Incorrect Password for user: ' + user[0].user);
+            reject('Incorrect Password for user: ' + '<strong>'+ user[0].user +'</strong>');
         }
         resolve();
         }).catch((err) => {
