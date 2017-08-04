@@ -17,6 +17,15 @@ Here the **[WEB322_APPV6.0](https://sleepy-escarpment-65210.herokuapp.com/)** we
 7. On the above of our menu, mongolab show us how to connect to remote db, both via shell and URL
 8. Test the db connection via shell (the fromat like this)
 
+Normally setting a config var causes your application to be restarted. In most situations there should be no need to redeploy after doing this.
+
+If you really do need to trigger a new deployment you can add a new empty commit, then push to Heroku again:
+```
+git commit --allow-empty -m "Trigger Heroku deploy after enabling collectstatic"
+git push heroku master
+```
+The new empty commit is a regular commit. It has a hash, an author, a timestamp, etc. It will have the same tree as its parent. This should cause Heroku to build your app slug again using the same code as the previous commit.
+
 ## handlebars 遍历一个二维表,比如象mongodb中取出来的数据: [link](http://cnodejs.org/topic/50d08106637ffa4155b2c5cc)
 
 `mongo ds151752.mlab.com:51752/web322_a6 -u xwang345 -p`
