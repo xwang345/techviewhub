@@ -10,10 +10,12 @@
   "author": "Xiaochen Wang",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "chalk": "^2.0.1",
     "client-sessions": "^0.8.0",
     "color": "^2.0.0",
+    "crypto": "^1.0.1",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
     "gulp": "^3.9.1",
@@ -21,7 +23,8 @@
     "mpromise": "^0.5.5",
     "pg": "^6.4.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.4.2"
+    "sequelize": "^4.4.2",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

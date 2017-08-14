@@ -1,7 +1,7 @@
-# WEB322_APPV6.0 [![Stories in Ready](https://badge.waffle.io/xwang345/WEB322_APPV5.0.svg?label=ready&title=Ready)](http://waffle.io/xwang345/WEB322_APPV5.0)  [![Build Status](https://travis-ci.org/xwang345/WEB322_APPV5.0.svg?branch=master)](https://travis-ci.org/xwang345/WEB322_APPV5.0) [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+# WEB322_APPV7.0 [![Stories in Ready](https://badge.waffle.io/xwang345/WEB322_APPV5.0.svg?label=ready&title=Ready)](http://waffle.io/xwang345/WEB322_APPV5.0)  [![Build Status](https://travis-ci.org/xwang345/WEB322_APPV5.0.svg?branch=master)](https://travis-ci.org/xwang345/WEB322_APPV5.0) [![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 WEB322_ASSIGNMENT7
 
-Here the **[WEB322_APPV6.0](https://sleepy-escarpment-65210.herokuapp.com/)** website deploy on the Heroku.
+Here the **[WEB322_APPV7.0](https://coolwater12.herokuapp.com/)** website deploy on the Heroku.
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/CC-BY_icon.svg/1024px-CC-BY_icon.svg.png" width="20%">
 
@@ -16,15 +16,6 @@ Here the **[WEB322_APPV6.0](https://sleepy-escarpment-65210.herokuapp.com/)** we
 6. We got warning message that indicate we don't have any user for our db, so u can create one just for the test propouse.
 7. On the above of our menu, mongolab show us how to connect to remote db, both via shell and URL
 8. Test the db connection via shell (the fromat like this)
-
-Normally setting a config var causes your application to be restarted. In most situations there should be no need to redeploy after doing this.
-
-If you really do need to trigger a new deployment you can add a new empty commit, then push to Heroku again:
-```
-git commit --allow-empty -m "Trigger Heroku deploy after enabling collectstatic"
-git push heroku master
-```
-The new empty commit is a regular commit. It has a hash, an author, a timestamp, etc. It will have the same tree as its parent. This should cause Heroku to build your app slug again using the same code as the previous commit.
 
 ## handlebars 遍历一个二维表,比如象mongodb中取出来的数据: [link](http://cnodejs.org/topic/50d08106637ffa4155b2c5cc)
 

@@ -1,9 +1,9 @@
 /*
  *  (including 3rd party web sites) or distributed to other students.
  *
- *  Name: ___Xiaochen Wang__ Student ID: ___015297153_____ Date: ____2-06-2017__
+ *  Name: ___Xiaochen Wang__ Student ID: ___015297153_____ Date: ____11-08-2017__
  *
- *  Online (Heroku) Link:  https://sleepy-escarpment-65210.herokuapp.com/
+ *  Online (Heroku) Link:   https://coolwater12.herokuapp.com/
  *
  ********************************************************************************/
 var express = require("express");
@@ -17,6 +17,8 @@ const dataServiceComments = require("./data-service-comments.js");
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const clientSessions = require("client-sessions");
+const bcrypt = require('bcryptjs');
+
 
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -28,11 +30,14 @@ function ensureLogin(req, res, next) {
   }
 }
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended:true }));
+
+
 const user = {
   username: ""
 };
 
-// Load CSS file
 app.use(express.static('public'));
 
 app.use(clientSessions({
@@ -288,7 +293,7 @@ app.post("/register", (req, res) => {
     dataServiceAuth.registerUser(req.body).then(() => {
         res.render("register", {successMessage: "User created"});
     }).catch((err) => {
-        res.render("register", {errorMessage: err, user:req.body.user});
+        res.render("register", {errorMessage: err, user: req.body.user});
     });
 });
 
@@ -302,15 +307,25 @@ app.post("/login", (req, res) => {
         console.log(chalk.bgGreen(JSON.stringify(req.session)));
         res.redirect("/employees");
     }).catch((err) => {
-        let erroruser =req.body.user;
-        // console.log("++++++++++"+chalk.bgCyan(JSON.stringify(erroruser)));
-        console.log("++++++++++"+chalk.bgCyan(erroruser));
-        var myErroruser = [erroruser];
-        myErroruser.splice(0,0,"<strong>");
-        myErroruser.splice(2,0,"</strong>");
-        console.log("++++++++++"+chalk.bgMagenta(myErroruser));
-        console.log(err)
-        res.render("login", {errorMessage: err, user: myErroruser});
+        // res.send(22222222222222222);
+        res.render("login", {errorMessage: err, user: req.body.user});
+    });
+});
+
+app.post("/api/updatePassword", (req, res) =>{
+    dataServiceAuth.checkUser({ user: req.body.user, password: req.body.currentPassword}).then(() => {
+        console.log(chalk.bgBlue("The_password_already_checked"));
+        dataServiceAuth.updatePassword(req.body).then(() => {
+            console.log(chalk.bgBlue(">>>Now Update the password!!!!"));
+            res.send({successMessage: "Password changed successfully for user: ", user: req.body.user});
+        }).catch((err) => {
+            console.log(chalk.red(">>>1Error Update the password!!!!"));
+            res.send({errorMessage:"The new passwords do not match."});
+        });
+    }).catch((err) => {
+        console.log(chalk.red(">>>2Error Update the password!!!!"));
+        console.log(err);
+        res.send({errorMessage: err});
     });
 });
 
