@@ -18,6 +18,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const clientSessions = require("client-sessions");
 const bcrypt = require('bcryptjs');
+const Chart = require('chart.js');
 
 
 var HTTP_PORT = process.env.PORT || 8080;
@@ -39,6 +40,7 @@ const user = {
 };
 
 app.use(express.static('public'));
+app.use(express.static('node_modules'));
 
 app.use(clientSessions({
   cookieName: "session", // this is the object name that will be added to 'req'
@@ -140,11 +142,19 @@ app.get("/employees", ensureLogin,(req, res) => {
             res.render("employeeList", { data: {}, title: "Employees" });
         });
     } else {
+        // require(['./node_modules/chart.js/dist/Chart.js'], (Chart) => {
+
+        // });
+        data_service.getDepartments().then((data) => {
+            var departmentTitle = data;
+        
         data_service.getAllEmployees().then((data) => {
-            res.render("employeeList", { data: data, title: "Employees", user: req.session.user});
+            console.log(chalk.cyan(departmentTitle));
+            res.render("employeeList", { data: data, title: "Employees", user: req.session.user, departmentTitle: departmentTitle});
         }).catch((err) => {
             res.render("employeeList", { data: {}, title: "Employees"});
         });
+    });
     }
 });
 
@@ -300,11 +310,11 @@ app.post("/register", (req, res) => {
 app.post("/login", (req, res) => {
     dataServiceAuth.checkUser(req.body).then(() => {
         const username = req.body.user;
-        // console.log(chalk.bgGreen(JSON.stringify(req.body.user)));
+        console.log(chalk.bgGreen(JSON.stringify("==================Login Fuction=============")));
+        console.log(chalk.bgGreen(JSON.stringify(req.body.user)));
         req.session.user = {
             username: username
         };
-        console.log(chalk.bgGreen(JSON.stringify(req.session)));
         res.redirect("/employees");
     }).catch((err) => {
         // res.send(22222222222222222);
