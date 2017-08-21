@@ -19,6 +19,7 @@ const bodyParser = require('body-parser');
 const clientSessions = require("client-sessions");
 const bcrypt = require('bcryptjs');
 const Chart = require('chart.js');
+const firebase = require('firebase');
 
 
 var HTTP_PORT = process.env.PORT || 8080;

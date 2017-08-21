@@ -19,6 +19,7 @@
     "crypto": "^1.0.1",
     "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
+    "firebase": "^4.3.0",
     "gulp": "^3.9.1",
     "mongoose": "^4.11.5",
     "mpromise": "^0.5.5",
