@@ -52,6 +52,15 @@ app.use(clientSessions({
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.listen(HTTP_PORT, function onHttpStart() {
+    var config = {
+        apiKey: "AIzaSyAK8UXD0O76-c3_vUHaST0Qrdw9cLwxGRw",
+        authDomain: "web322a8.firebaseapp.com",
+        databaseURL: "https://web322a8.firebaseio.com",
+        projectId: "web322a8",
+        storageBucket: "web322a8.appspot.com",
+        messagingSenderId: "522477312492"
+      };
+      firebase.initializeApp(config);
     console.log(chalk.yellow("==========    System is running   =========="));
     console.log(chalk.yellow("===                                      ==="));
     console.log(chalk.yellow("== Express http server listening on: " + HTTP_PORT + " =="));
